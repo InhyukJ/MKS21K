@@ -1,16 +1,16 @@
-public class superArray{
+public class SuperArray{
     private String[] data;
     private int size;
   
     //constructor make an empty superArray should make size 0, 
     //but the data capacity 10.
 
-    public superArray() {
+    public SuperArray() {
 	data = new String[10];
 	size = 0;
     }
 
-    public superArray(int initCapacity) {
+    public SuperArray(int initCapacity) {
 	if (initCapacity < 0) {
 	    throw new IllegalArgumentException("The specified initial capacity is negative.");
 	}
@@ -18,7 +18,7 @@ public class superArray{
 	size = 0;
     }
 
-    public superArray(String[]ary, int initCapacity) {
+    public SuperArray(String[]ary, int initCapacity) {
 	if (initCapacity < 0) {
 	    throw new IllegalArgumentException();
 	}
