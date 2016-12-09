@@ -12,16 +12,18 @@ public class Barcode implements Comparable<Barcode>{
       boolean checkLetters = true;
       String alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
       for (int n = 0;n < alphabets.length();n++){
-	  if (zip.indexOf(alphabets[n]) = -1) {
+	  char letter = alphabets.charAt(n);
+	  if (zip.indexOf(letter) == -1) {
 	      checkLetters = false;
 	  }
       }
-      if (zip.length() != 5 || checkLetter) {
-	  throw new RunTimeException("Error: zip is too long, too short, or contains noninteger values.");
+      if (zip.length() != 5 || checkLetters) {
+	  throw new RuntimeException("Error: zip is too long, too short, or contains noninteger values.");
       }
       else {
 	  _zip = zip;
 	  _checkDigit = checkSum();
+      }
   }
 
 // postcondition: Creates a copy of a bar code.
@@ -32,9 +34,9 @@ public class Barcode implements Comparable<Barcode>{
 
 
 // postcondition: computes and returns the check sum for _zip
-  private int checkSum(){
+  private static int checkSum(){
       int sumZip = 0;
-      int num = Integer.parseInt(zip);
+      int num = Integer.parseInt(_zip);
       while (num > 0) {
 	  sumZip += num % 10;
 	  num /= 10;
@@ -51,16 +53,16 @@ public class Barcode implements Comparable<Barcode>{
 //ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
   public String toString(){
       String[]reference = new String[10];
-      reference.add("||:::"); //0
-      reference.add(":::||"); //1
-      reference.add("::|:|"); //2
-      reference.add("::||:"); //3
-      reference.add(":|::|"); //4
-      reference.add(":|:|:"); //5
-      reference.add(":||::"); //6
-      reference.add("|:::|"); //7
-      reference.add("|::|:"); //8
-      reference.add("|:|::"); //9
+      reference[0] = "||:::"; //0
+      reference[1] = ":::||"; //1
+      reference[2] = "::|:|"; //2
+      reference[3] = "::||:"; //3
+      reference[4] = ":|::|"; //4
+      reference[5] = ":|:|:"; //5
+      reference[6] = ":||::"; //6
+      reference[7] = "|:::|"; //7
+      reference[8] = "|::|:"; //8
+      reference[9] = "|:|::"; //9
 
       String ans = "The bar code of " + _zip + " with they check digit of " + _checkDigit + " is: ";
       String sAns = "|";
@@ -73,7 +75,9 @@ public class Barcode implements Comparable<Barcode>{
 
 // postcondition: compares the zip + checkdigit, in numerical order. 
   public int compareTo(Barcode other){
-      //idgi
+      int numZip = Integer.parseInt(_zip);
+      int numOther = Integer.parseInt(other);
+      return numZip - numOther;
   }
     
 }
