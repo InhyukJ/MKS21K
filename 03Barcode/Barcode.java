@@ -11,8 +11,8 @@ public class Barcode implements Comparable<Barcode>{
     //               or zip contains a non digit
     //               _zip and _checkDigit are initialized.
     public Barcode(String zip) {
-	if (zip.length() != 5 || !digitCheck()) {
-	    throw new RuntimeException("Erro: zip is too long, too short, or contains noninteger values.");
+	if (zip.length() != 5 || !digitCheck(zip)) {
+	    throw new RuntimeException("Error: zip is too long, too short, or contains noninteger values.");
 	}
 	else {
 	    _zip = zip;
@@ -20,13 +20,13 @@ public class Barcode implements Comparable<Barcode>{
 	}
     }
 
-    private static boolean digitCheck() {
+    private static boolean digitCheck(String zip) {
 	boolean allNumbers = true;
 	String digits = "0123456789";
 
-	for (int n = 0;n < digits.length();n++) {
-	    char digit = digits.charAt(n);
-	    if (_zip.indexOf(digit) == -1) {
+	for (int n = 0;n < zip.length();n++) { //check from digits in zip instead
+	    char digit = zip.charAt(n);
+	    if (digits.indexOf(digit) == -1) {
 		allNumbers = false;
 	    }
 	}
@@ -51,7 +51,7 @@ public class Barcode implements Comparable<Barcode>{
     }
     
     public static String toCode(String zip) {
-	if (zip.length() != 5 || !digitCheck()) {
+	if (zip.length() != 5 || !digitCheck(zip)) {
 	    throw new IllegalArgumentException("The zip is too long, too short, or contains nondigit characters.");
 	}
 	String[]reference = new String[10];
@@ -121,7 +121,6 @@ public class Barcode implements Comparable<Barcode>{
     
     // postcondition: compares the zip + checkdigit, in numerical order. 
     public int compareTo(Barcode other){
-	//return zip.compareTo(other.zip);
-	return 0;
+	return _zip.compareTo(other._zip);
     }    
 }
