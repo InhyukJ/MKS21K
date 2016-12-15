@@ -31,16 +31,20 @@ public class Sorts{
 	    startPoint++;
 	    n++;
 	}
-	for (int n = startPoint+1;n < data.length;n++) {
-	    int less = data[n];
-	    int index = n;
-	    for (int m = n-1;m > 0;m--) {
-		if (data[n] < data[m]) {
-		    index = m;
+	for (int u = startPoint;u < data.length;u++) {
+	    for (int m = 0;m < data.length - 1;m++) {
+		if (data[u] < data [m]) {
+			int temp = data[u];
+			data[u] = data[m];
+			data[m] = temp;
+		}
+	    }
+	}
+    }
     
     public static void main(String[]arg) {
 	int[]a = {3,6,4,8,5};
-	selectionSort(a);
+	insertionSort(a);
 	System.out.println(a[0]);	
 	System.out.println(a[1]);
 	System.out.println(a[2]);
