@@ -32,7 +32,7 @@ public class Sorts{
 	    n++;
 	}
 	for (int u = startPoint;u < data.length;u++) {
-	    for (int m = 0;m < data.length - 1;m++) {
+	    for (int m = 0;m < data.length - 1;m++) { //FIX, use while loop to find the place first to replace, not replace as it runs
 		if (data[u] < data [m]) {
 			int temp = data[u];
 			data[u] = data[m];
@@ -58,11 +58,18 @@ public class Sorts{
     
     public static void main(String[]arg) {
 	int[]a = {3,6,4,2,5};
-	bubbleSort(a);
+	insertionSort(a);
 	System.out.println(a[0]);	
 	System.out.println(a[1]);
 	System.out.println(a[2]);
 	System.out.println(a[3]);
 	System.out.println(a[4]);
+
+	int[]b = {1,2,54,6,3,8,32,42};
+	selectionSort(b);
+	for (int x = 0;x < b.length;x++) {
+	    System.out.println(b[x]);
+	}
+	
     }
 }
