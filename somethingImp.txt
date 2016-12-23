@@ -1,0 +1,3 @@
+important stuff
+http://stackoverflow.com/questions/13193960/swing-adding-a-image-into-gui
+http://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel
